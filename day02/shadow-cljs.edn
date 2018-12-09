@@ -1,0 +1,9 @@
+;; shadow-cljs configuration
+{:source-paths ["src"]
+ :dependencies [[funcool/cuerdas "2.0.6"]]
+ :builds
+ {:app
+  {:target :node-script
+   :output-to "target/main.js"
+   :main xamfoo.day02/main!
+   :devtools {:after-load xamfoo.day02/main!}}}}
