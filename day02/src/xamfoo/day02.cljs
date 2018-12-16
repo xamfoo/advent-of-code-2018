@@ -10,6 +10,6 @@
 
 (defonce part2-ans (part2/common-letters-of-match input))
 
-(defn main! [])
+(defn main! []
   (println (str "Part 1 - Checksum: " part1-ans))
   (println (str "Part 2 - Common letters: " (js/JSON.stringify part2-ans)))

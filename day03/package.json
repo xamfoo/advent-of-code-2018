@@ -1,0 +1,17 @@
+{
+  "name": "@xamfoo/aoc2018-day03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "shadow-cljs": "^2.7.8"
+  },
+  "dependencies": {
+    "yargs": "^12.0.5"
+  }
+}
