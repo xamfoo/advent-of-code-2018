@@ -1,5 +1,6 @@
 (ns xamfoo.cli
   (:require
+    [clojure.string]
     ["fs" :as fs]
     ["process" :as process]
     ["yargs" :as yargs]))
