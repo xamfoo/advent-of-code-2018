@@ -1,47 +1,38 @@
---- Day 3: No Matter How You Slice It ---
-The Elves managed to locate the chimney-squeeze prototype fabric for Santa's suit (thanks to someone who helpfully wrote its box IDs on the wall of the warehouse in the middle of the night). Unfortunately, anomalies are still affecting them - nobody can even agree on how to cut the fabric.
+--- Day 5: Alchemical Reduction ---
+You've managed to sneak in to the prototype suit manufacturing lab. The Elves are making decent progress, but are still struggling with the suit's size reduction capabilities.
 
-The whole piece of fabric they're working on is a very large square - at least 1000 inches on each side.
+While the very latest in 1518 alchemical technology might have solved their problem eventually, you can do better. You scan the chemical composition of the suit's material and discover that it is formed by extremely long polymers (one of which is available as your puzzle input).
 
-Each Elf has made a claim about which area of fabric would be ideal for Santa's suit. All claims have an ID and consist of a single rectangle with edges parallel to the edges of the fabric. Each claim's rectangle is defined as follows:
+The polymer is formed by smaller units which, when triggered, react with each other such that two adjacent units of the same type and opposite polarity are destroyed. Units' types are represented by letters; units' polarity is represented by capitalization. For instance, r and R are units with the same type but opposite polarity, whereas r and s are entirely different types and do not react.
 
-The number of inches between the left edge of the fabric and the left edge of the rectangle.
-The number of inches between the top edge of the fabric and the top edge of the rectangle.
-The width of the rectangle in inches.
-The height of the rectangle in inches.
-A claim like #123 @ 3,2: 5x4 means that claim ID 123 specifies a rectangle 3 inches from the left edge, 2 inches from the top edge, 5 inches wide, and 4 inches tall. Visually, it claims the square inches of fabric represented by # (and ignores the square inches of fabric represented by .) in the diagram below:
+For example:
 
-...........
-...........
-...#####...
-...#####...
-...#####...
-...#####...
-...........
-...........
-...........
-The problem is that many of the claims overlap, causing two or more claims to cover part of the same areas. For example, consider the following claims:
+In aA, a and A react, leaving nothing behind.
+In abBA, bB destroys itself, leaving aA. As above, this then destroys itself, leaving nothing.
+In abAB, no two adjacent units are of the same type, and so nothing happens.
+In aabAAB, even though aa and AA are of the same type, their polarities match, and so nothing happens.
+Now, consider a larger example, dabAcCaCBAcCcaDA:
 
-#1 @ 1,3: 4x4
-#2 @ 3,1: 4x4
-#3 @ 5,5: 2x2
-Visually, these claim the following areas:
+dabAcCaCBAcCcaDA  The first 'cC' is removed.
+dabAaCBAcCcaDA    This creates 'Aa', which is removed.
+dabCBAcCcaDA      Either 'cC' or 'Cc' are removed (the result is the same).
+dabCBAcaDA        No further actions can be taken.
+After all possible reactions, the resulting polymer contains 10 units.
 
-........
-...2222.
-...2222.
-.11XX22.
-.11XX22.
-.111133.
-.111133.
-........
-The four square inches marked with X are claimed by both 1 and 2. (Claim 3, while adjacent to the others, does not overlap either of them.)
-
-If the Elves all proceed with their own plans, none of them will have enough fabric. How many square inches of fabric are within two or more claims?
+How many units remain after fully reacting the polymer you scanned? (Note: in this puzzle and others, the input is large; if you copy/paste your input, make sure you get the whole thing.)
 
 --- Part Two ---
-Amidst the chaos, you notice that exactly one claim doesn't overlap by even a single square inch of fabric with any other claim. If you can somehow draw attention to it, maybe the Elves will be able to make Santa's suit after all!
+Time to improve the polymer.
 
-For example, in the claims above, only claim 3 is intact after all claims are made.
+One of the unit types is causing problems; it's preventing the polymer from collapsing as much as it should. Your goal is to figure out which unit type is causing the most problems, remove all instances of it (regardless of polarity), fully react the remaining polymer, and measure its length.
 
-What is the ID of the only claim that doesn't overlap?
+For example, again using the polymer dabAcCaCBAcCcaDA from above:
+
+Removing all A/a units produces dbcCCBcCcD. Fully reacting this polymer produces dbCBcD, which has length 6.
+Removing all B/b units produces daAcCaCAcCcaDA. Fully reacting this polymer produces daCAcaDA, which has length 8.
+Removing all C/c units produces dabAaBAaDA. Fully reacting this polymer produces daDA, which has length 4.
+Removing all D/d units produces abAcCaCBAcCcaA. Fully reacting this polymer produces abCBAc, which has length 6.
+In this example, removing all C/c units was best, producing the answer 4.
+
+What is the length of the shortest polymer you can produce by removing all units of exactly one type and fully reacting the result?
+
